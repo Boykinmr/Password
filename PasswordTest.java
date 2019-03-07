@@ -10,12 +10,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * The test class PasswordTest.  This test class will open a text file with all of the password tests
- * and test results to load them into arrays to be accessed for use by the test methods.  Each test
- * method, will access a password from passwordChoice and load it's specific test result from either
- * passwordCheckLengths, Cases etc. and run the test to ensure that it passes.  This was done to make
- * less typing.  In the event that any test cases were changed, a great deal of work would have to be
- * done in order to update all test cases or to add more test cases.
+ * The test class PasswordTest.  This test class will open a text file with all of the 
+ * password tests and test results to load them into arrays to be accessed for use by the
+ * test methods.  Each test method, will access a password from passwordChoice and load 
+ * it's specific test result from either passwordCheckLengths, Cases etc. and run the 
+ * test to ensure that it passes.  This was done to make less typing.  In the event that 
+ * any test cases were changed, a great deal of work would have to be done in order to 
+ * update all test cases or to add more test cases.
  *
  * @author  (Michael R. Boykin)
  * @version (09/01/2017)
@@ -25,11 +26,14 @@ public class PasswordTest
     private Password password1;
     private Scanner readFile;
     
-    //These arrays will hold the password tests and test results to check for by each test method.
-    //Passwords will be stored in this array.
+    /** These arrays will hold the password tests and test results to check for by each 
+     * test method.  Passwords will be stored in this array.
+     */
     ArrayList<String> passwordChoice = new ArrayList<String>();
     
-    //The expected result of the test methods are accessed from these arrays and checked to be T/F.
+    /**The expected result of the test methods are accessed from these arrays and checked
+     * to be T/F.
+     */
     ArrayList<Boolean> passwordCheckLengths = new ArrayList<Boolean>();
     ArrayList<Boolean> passwordCheckCases = new ArrayList<Boolean>();
     ArrayList<Boolean> passwordCheckDigits = new ArrayList<Boolean>();
@@ -58,14 +62,17 @@ public class PasswordTest
             readFile = new Scanner(new File("testCases.txt"));
         }
         catch (Exception e){
-            System.out.println("Could not find the file.  Check to see if testCases.txt is in the correct directory.");
+            System.out.println("Could not find the file.  Check to see if testCases.txt"
+            		+ " is in the correct directory.");
         }
         
         //Reads each line of the testCase.txt file until it gets to the end
         int index = 0;
         while(readFile.hasNext()){
             String readFileContents = readFile.next().trim();
-            //io.next() method counts spaces as an end of read, so the test file uses a signifier.
+            /**io.next() method counts spaces as an end of read, so the test file uses a 
+             * signifier.
+             */
             if(readFileContents.contains("[spc]")){
                 readFileContents = readFileContents.replace("[spc]", " ");
             }
@@ -97,11 +104,13 @@ public class PasswordTest
     {
         for(int index = 1; index < passwordChoice.size(); index++){
             char[] passwordArray = passwordChoice.get(index).toCharArray();
-            assertEquals(passwordCheckLengths.get(index), password1.checkLength(passwordArray));
+            assertEquals(passwordCheckLengths.get(index), 
+            		password1.checkLength(passwordArray));
         }
-        /**I took one look at the length of the following code and then realized that I have to 
-         * type it all out again for every test case.  Instead I put the passwords and results into
-         * a text file and then direct the compiler to import the file to test.
+        /**I took one look at the length of the following code and then realized that I 
+         * have to type it all out again for every test case. Instead I put the passwords
+         * and results into a text file and then direct the compiler to import the file 
+         * to test.
          * 
          * assertEquals(true, password1.checkLength("D0g7\""));
          * assertEquals(true, password1.checkLength("D075\"t"));
@@ -139,7 +148,8 @@ public class PasswordTest
     {
         for(int index = 1; index < passwordChoice.size(); index++){
             char[] passwordArray = passwordChoice.get(index).toCharArray();
-            assertEquals(passwordCheckDigits.get(index), password1.checkNumber(passwordArray));
+            assertEquals(passwordCheckDigits.get(index), 
+            		password1.checkNumber(passwordArray));
         }
     }
     
@@ -148,7 +158,8 @@ public class PasswordTest
     {
         for(int index = 1; index < passwordChoice.size(); index++){
             char[] passwordArray = passwordChoice.get(index).toCharArray();
-            assertEquals(passwordCheckCases.get(index), password1.checkCase(passwordArray));
+            assertEquals(passwordCheckCases.get(index), 
+            		password1.checkCase(passwordArray));
         }
     }
     
@@ -157,7 +168,8 @@ public class PasswordTest
     {
         for(int index = 1; index < passwordChoice.size(); index++){
             char[] passwordArray = passwordChoice.get(index).toCharArray();
-            assertEquals(passwordCheckSpaces.get(index), password1.checkWhiteSpace(passwordArray));
+            assertEquals(passwordCheckSpaces.get(index), 
+            		password1.checkWhiteSpace(passwordArray));
         }
     }
 
